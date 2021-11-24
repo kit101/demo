@@ -1,0 +1,16 @@
+---
+kind: pipeline
+type: docker
+name: default
+
+steps:
+- name: env
+  image: alpine
+  commands:
+  - env
+- name: test
+  image: kitkit/drone-plugin-gitee:linux-amd64
+  pull: always
+  settings:
+    DRONE_GITEE_ACCESS_TOKEN:
+      from_secret: DRONE_GITEE_ACCESS_TOKEN
